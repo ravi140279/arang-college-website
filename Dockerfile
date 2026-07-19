@@ -2,7 +2,7 @@
 
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
-RUN apk add --no-config --no-cache python3 make g++ gcc libc-dev
+RUN apk add --no-cache python3 make g++ gcc libc-dev
 WORKDIR /app
 
 COPY package.json package-lock.json ./
