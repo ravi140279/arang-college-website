@@ -1,0 +1,68 @@
+{
+  "siteName": "Badri Prasad Lodhi Post Graduate Government College, Arang",
+  "siteDescription": "Responsive Next.js rebuild inspired by the official website of Badri Prasad Lodhi Post Graduate Government College, Arang.",
+  "collegeName": "Badri Prasad Lodhi Post Graduate Government College",
+  "collegeSubtitle": "Arang, District Raipur, Chhattisgarh",
+  "footerName": "Badri Prasad Lodhi Post Graduate Government College",
+  "footerAddress": "Arang, District Raipur, Chhattisgarh",
+  "footerAffiliation": "Affiliated to Pt. Ravishankar Shukla University, Raipur",
+  "officialSiteUrl": "https://govpgcollarang.cgstate.gov.in/",
+  "quickLinks": [
+    {
+      "label": "Notice Board",
+      "href": "/notice-board"
+    },
+    {
+      "label": "Events",
+      "href": "/event"
+    },
+    {
+      "label": "Courses",
+      "href": "/course-details"
+    },
+    {
+      "label": "Time Table",
+      "href": "/time-table"
+    },
+    {
+      "label": "NAAC",
+      "href": "/iqac-details"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact-us"
+    }
+  ],
+  "footerLinks": [
+    {
+      "label": "Notice Board",
+      "href": "/notice-board"
+    },
+    {
+      "label": "Events",
+      "href": "/event"
+    },
+    {
+      "label": "Contact Us",
+      "href": "/contact-us"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Established",
+      "value": "1965"
+    },
+    {
+      "label": "Streams",
+      "value": "Arts / Commerce / Science"
+    },
+    {
+      "label": "Affiliation",
+      "value": "Pt. RSU, Raipur"
+    },
+    {
+      "label": "Location",
+      "value": "Arang, Chhattisgarh"
+    }
+  ]
+}

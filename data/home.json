@@ -1,0 +1,30 @@
+{
+  "slides": [
+    {
+      "title": "Badri Prasad Lodhi Post Graduate Government College, Arang",
+      "subtitle": "Affiliated to Pt. Ravishankar Shukla University, Raipur",
+      "image": "https://govpgcollarang.cgstate.gov.in/assets/img/silde/College_New_Building_FileArang_17326939409856746cfb4f06f6.jpg"
+    },
+    {
+      "title": "Academic, Co-curricular, and Sports Excellence",
+      "subtitle": "Serving learners from Arang and nearby rural communities since 1965",
+      "image": "https://govpgcollarang.cgstate.gov.in/assets/img/silde/Clg-sport1_FileArang_177383100967669ba8361a50de.jpeg"
+    },
+    {
+      "title": "Modern Teaching Spaces and Laboratories",
+      "subtitle": "Equipped classrooms, computer labs, and science laboratories for practical learning.",
+      "image": "https://govpgcollarang.cgstate.gov.in/assets/img/silde/Smart-Class-_FileArang_177383094317669ba7f185a3f.jpeg"
+    }
+  ],
+  "heroBadge": "Official Website of this College build by Ravindra Sharma",
+  "ctaButtons": [
+    {
+      "label": "Explore College",
+      "href": "/about-us"
+    },
+    {
+      "label": "Latest Notices",
+      "href": "/notice-board"
+    }
+  ]
+}

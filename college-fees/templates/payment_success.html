@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="status-card success">
+  <p class="eyebrow">Payment Successful</p>
+  <h1>{{ payment.fee_label }} received</h1>
+  <p>Your payment has been captured successfully through Paytm and will settle to the college account configured as {{ bank_account_label }}.</p>
+  <dl class="detail-grid">
+    <div><dt>Student ID</dt><dd>{{ payment.student_id }}</dd></div>
+    <div><dt>Student Name</dt><dd>{{ payment.student_name }}</dd></div>
+    <div><dt>Father's Name</dt><dd>{{ payment.father_name }}</dd></div>
+    <div><dt>Gender</dt><dd>{{ payment.gender }}</dd></div>
+    <div><dt>Caste</dt><dd>{{ payment.caste }}</dd></div>
+    <div><dt>Class</dt><dd>{{ payment.class_name }}</dd></div>
+    <div><dt>Student Type</dt><dd>{{ payment.student_type }}</dd></div>
+    <div><dt>Semester / Year</dt><dd>{{ payment.semester_year }}</dd></div>
+    <div><dt>Fee Type</dt><dd>{{ payment.fee_label }}</dd></div>
+    <div><dt>Amount</dt><dd>{{ payment.currency }} {{ payment.amount_rupees }}</dd></div>
+    <div><dt>Paytm Order ID</dt><dd>{{ payment.order_id }}</dd></div>
+    <div><dt>Paytm Transaction ID</dt><dd>{{ payment.payment_id }}</dd></div>
+  </dl>
+  <div class="status-actions">
+    <a class="primary-button" href="{{ url_for('index') }}">New payment</a>
+    <a class="secondary-link" href="{{ url_for('payment_history') }}">View payment register</a>
+  </div>
+</section>
+{% endblock %}

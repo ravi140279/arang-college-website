@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="table-card">
+  <div class="section-heading inline-heading">
+    <div>
+      <p class="eyebrow">Collection Register</p>
+      <h1>{{ college_name }}</h1>
+    </div>
+    <a class="secondary-link" href="{{ url_for('index') }}">Back to payment form</a>
+  </div>
+  {% if payments %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Student ID</th>
+          <th>Name</th>
+          <th>Father's Name</th>
+          <th>Gender</th>
+          <th>Caste</th>
+          <th>Class</th>
+          <th>Student Type</th>
+          <th>Semester / Year</th>
+          <th>Fee Type</th>
+          <th>Amount</th>
+          <th>Order ID</th>
+          <th>Payment ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for payment in payments %}
+        <tr>
+          <td>{{ payment['created_at'] }}</td>
+          <td>{{ payment['student_id'] }}</td>
+          <td>{{ payment['student_name'] }}</td>
+          <td>{{ payment['father_name'] }}</td>
+          <td>{{ payment['gender'] }}</td>
+          <td>{{ payment['caste'] }}</td>
+          <td>{{ payment['class_name'] }}</td>
+          <td>{{ payment['student_type'] }}</td>
+          <td>{{ payment['semester_year'] }}</td>
+          <td>{{ payment['fee_label'] }}</td>
+          <td>{{ payment['currency'] }} {{ payment['amount_rupees'] }}</td>
+          <td>{{ payment['order_id'] }}</td>
+          <td>{{ payment['payment_id'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">No successful fee payments have been recorded yet.</div>
+  {% endif %}
+</section>
+{% endblock %}

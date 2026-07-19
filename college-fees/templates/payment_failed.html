@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="status-card failure">
+  <p class="eyebrow">Payment Failed</p>
+  <h1>Verification could not be completed</h1>
+  <p>{{ error_message }}</p>
+  <div class="status-actions">
+    <a class="primary-button" href="{{ url_for('index') }}">Return to fee form</a>
+  </div>
+</section>
+{% endblock %}

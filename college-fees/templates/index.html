@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block extra_head %}
+{% if gateway_ready %}
+<script src="{{ paytm_checkout_js_url }}"></script>
+{% endif %}
+{% endblock %}
+{% block content %}
+<section class="hero-card">
+  <div class="hero-copy">
+    <p class="eyebrow">Digital Fee Collection</p>
+    <h1>{{ college_name }}</h1>
+    <p class="hero-text">Students can select the fee category, review the payable amount, and complete payment securely through Paytm. Settlements are routed by Paytm to the college bank account configured in your merchant dashboard.</p>
+    <div class="hero-meta">
+      <div>
+        <span>Settlement account</span>
+        <strong>{{ bank_account_label }}</strong>
+      </div>
+      <div>
+        <span>Gateway status</span>
+        <strong>{{ 'Configured' if gateway_ready else 'Pending setup' }}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="summary-card">
+      <p class="summary-label">Selected Fee</p>
+      <h2 id="selected-fee-label">Term Fees</h2>
+      <p id="selected-fee-description">Academic term fee payment</p>
+      <div class="amount-pill">
+        <span>Amount</span>
+        <strong id="selected-fee-amount">{{ currency }} {{ fee_catalog['term']['amount_rupees'] }}</strong>
+      </div>
+      <a class="secondary-link" href="{{ url_for('payment_history') }}">View collected payments</a>
+    </div>
+  </div>
+</section>
+
+<section class="form-card">
+  <div class="section-heading">
+    <p class="eyebrow">Student Payment Form</p>
+    <h2>Pay term or examination fees</h2>
+  </div>
+  {% if not gateway_ready %}
+  <div class="warning-box">
+    Add your Paytm MID and merchant key in the local .env file before taking live payments.
+  </div>
+  {% endif %}
+  <form id="fee-form" class="fee-form">
+    <fieldset class="fee-choice-group full-width">
+      <legend>Fee Type</legend>
+      <label class="radio-card">
+        <input type="radio" name="fee_type" value="term" checked>
+        <span>
+          <strong>Term Fees</strong>
+          <small>{{ currency }} {{ fee_catalog['term']['amount_rupees'] }}</small>
+        </span>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="fee_type" value="examination">
+        <span>
+          <strong>Examination Fees</strong>
+          <small>{{ currency }} {{ fee_catalog['examination']['amount_rupees'] }}</small>
+        </span>
+      </label>
+    </fieldset>
+    <label>
+      <span>Student ID</span>
+      <input type="text" name="student_id" placeholder="2026BSC001" required>
+    </label>
+    <label>
+      <span>Student Name</span>
+      <input type="text" name="student_name" placeholder="Student full name" required>
+    </label>
+    <label>
+      <span>Father's Name</span>
+      <input type="text" name="father_name" placeholder="Father's full name" required>
+    </label>
+    <label>
+      <span>Gender</span>
+      <select name="gender" required>
+        <option value="" selected disabled>Select gender</option>
+        {% for gender in gender_options %}
+        <option value="{{ gender }}">{{ gender }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span>Caste</span>
+      <select name="caste" required>
+        <option value="" selected disabled>Select caste</option>
+        {% for caste in caste_options %}
+        <option value="{{ caste }}">{{ caste }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span>Class</span>
+      <select name="class_name" required>
+        <option value="" selected disabled>Select class</option>
+        {% for class_name in class_options %}
+        <option value="{{ class_name }}">{{ class_name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span>Student Type</span>
+      <select name="student_type" required>
+        <option value="" selected disabled>Select student type</option>
+        {% for student_type in student_type_options %}
+        <option value="{{ student_type }}">{{ student_type }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span>Semester / Year</span>
+      <select name="semester_year" required>
+        <option value="" selected disabled>Select semester or year</option>
+        {% for semester_year in semester_year_options %}
+        <option value="{{ semester_year }}">{{ semester_year }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span>Email Address</span>
+      <input type="email" name="email" placeholder="student@college.edu" required>
+    </label>
+    <label>
+      <span>Mobile Number</span>
+      <input type="tel" name="phone" placeholder="10-digit mobile number" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" required>
+    </label>
+    <button class="primary-button" type="submit">Proceed to Pay</button>
+  </form>
+</section>
+
+<script>
+  const feeCatalog = {{ fee_catalog | tojson }};
+  const currency = {{ currency | tojson }};
+  const paytmMid = {{ paytm_mid | tojson }};
+  const form = document.getElementById('fee-form');
+  const feeTypeInputs = document.querySelectorAll('input[name="fee_type"]');
+  const feeLabel = document.getElementById('selected-fee-label');
+  const feeDescription = document.getElementById('selected-fee-description');
+  const feeAmount = document.getElementById('selected-fee-amount');
+
+  function updateSummary() {
+    const selectedFeeType = document.querySelector('input[name="fee_type"]:checked').value;
+    const selected = feeCatalog[selectedFeeType];
+    feeLabel.textContent = selected.label;
+    feeDescription.textContent = selected.description;
+    feeAmount.textContent = `${currency} ${selected.amount_rupees}`;
+  }
+
+  feeTypeInputs.forEach((input) => input.addEventListener('change', updateSummary));
+  updateSummary();
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Creating Paytm order...';
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('{{ url_for("create_order") }}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to create payment order.');
+      }
+
+      if (!window.Paytm || !window.Paytm.CheckoutJS) {
+        throw new Error('Paytm CheckoutJS failed to load. Verify MID and environment settings.');
+      }
+
+      const paytmConfig = {
+        root: '',
+        flow: 'DEFAULT',
+        data: {
+          orderId: data.order_id,
+          token: data.txn_token,
+          tokenType: 'TXN_TOKEN',
+          amount: data.amount
+        },
+        handler: {
+          notifyMerchant: function (eventName) {
+            if (eventName === 'APP_CLOSED') {
+              submitButton.disabled = false;
+              submitButton.textContent = 'Proceed to Pay';
+            }
+          }
+        }
+      };
+
+      await window.Paytm.CheckoutJS.init(paytmConfig);
+      window.Paytm.CheckoutJS.invoke();
+    } catch (error) {
+      alert(error.message);
+      submitButton.disabled = false;
+      submitButton.textContent = 'Proceed to Pay';
+    }
+  });
+</script>
+{% endblock %}

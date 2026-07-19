@@ -1,0 +1,196 @@
+[
+  {
+    "label": "About",
+    "items": [
+      {
+        "label": "About Us",
+        "href": "/about-us"
+      },
+      {
+        "label": "Vision",
+        "href": "/vision"
+      },
+      {
+        "label": "Mission",
+        "href": "/mission"
+      },
+      {
+        "label": "Principal Details",
+        "href": "/principal-details"
+      },
+      {
+        "label": "Janbhagidari Samiti",
+        "href": "/janbhagidari-samiti-details"
+      },
+      {
+        "label": "College Samiti",
+        "href": "/college-samiti"
+      },
+      {
+        "label": "Department List",
+        "href": "/department-list"
+      },
+      {
+        "label": "Teaching Staff",
+        "href": "/teaching-staff"
+      },
+      {
+        "label": "Non-Teaching Staff",
+        "href": "/non-teaching-staff"
+      },
+      {
+        "label": "Alumni",
+        "href": "/alumni-details"
+      }
+    ]
+  },
+  {
+    "label": "Academic Informations",
+    "items": [
+      {
+        "label": "Course Details",
+        "href": "/course-details"
+      },
+      {
+        "label": "Syllabus",
+        "href": "/syllabus"
+      },
+      {
+        "label": "Calendar",
+        "href": "/calendar"
+      },
+      {
+        "label": "Admission Guideline",
+        "href": "/admission-guideline"
+      },
+      {
+        "label": "Fees Payment",
+        "href": "/fees-payment"
+      },
+      {
+        "label": "Student Union",
+        "href": "/student-union"
+      }
+    ]
+  },
+  {
+    "label": "Facilities",
+    "items": [
+      {
+        "label": "NCC",
+        "href": "/ncc"
+      },
+      {
+        "label": "NSS",
+        "href": "/nss"
+      },
+      {
+        "label": "Red Cross",
+        "href": "/red-cross"
+      },
+      {
+        "label": "Girls Common Room",
+        "href": "/girls-common-room"
+      },
+      {
+        "label": "Smart Class",
+        "href": "/smart-class"
+      },
+      {
+        "label": "Botanical Garden",
+        "href": "/botnical-garden"
+      },
+      {
+        "label": "Herbal Garden",
+        "href": "/harbal-garden"
+      },
+      {
+        "label": "Ramp",
+        "href": "/ramp"
+      }
+    ]
+  },
+  {
+    "label": "NAAC & Research",
+    "items": [
+      {
+        "label": "IQAC",
+        "href": "/iqac-details"
+      },
+      {
+        "label": "AISHE",
+        "href": "/aish-details"
+      },
+      {
+        "label": "Important Links",
+        "href": "/important-link-details"
+      },
+      {
+        "label": "NAAC Feedback",
+        "href": "/naac-feedback-details"
+      },
+      {
+        "label": "SSR",
+        "href": "/ssr-details"
+      },
+      {
+        "label": "AQAR",
+        "href": "/aqar-details"
+      },
+      {
+        "label": "Peer Team Report",
+        "href": "/peer-team-report-details"
+      },
+      {
+        "label": "NAAC Certificate",
+        "href": "/naac-certificate-details"
+      }
+    ]
+  },
+  {
+    "label": "Exam & Gallery",
+    "items": [
+      {
+        "label": "Unit Test",
+        "href": "/unit-test"
+      },
+      {
+        "label": "Result",
+        "href": "/result"
+      },
+      {
+        "label": "Time Table",
+        "href": "/time-table"
+      },
+      {
+        "label": "Notice Board",
+        "href": "/notice-board"
+      },
+      {
+        "label": "Events",
+        "href": "/event"
+      },
+      {
+        "label": "Award Gallery",
+        "href": "/award-gallery"
+      },
+      {
+        "label": "Activities Gallery",
+        "href": "/activities-gallery"
+      },
+      {
+        "label": "Other Gallery",
+        "href": "/other-gallery"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact-us"
+      }
+    ]
+  },
+  {
+    "label": "College Fees Collection",
+    "href": "/fees",
+    "items": []
+  }
+]
